@@ -1,0 +1,20 @@
+{
+  "name": "storm-claude-marketplace",
+  "metadata": {
+    "description": "A curated collection of Claude Code plugins",
+    "version": "1.0.0",
+    "pluginRoot": "../plugins"
+  },
+  "owner": {
+    "name": "Storm",
+    "email": "storm@example.com"
+  },
+  "plugins": [
+    {
+      "name": "hello-world",
+      "source": "./plugins/hello-world",
+      "description": "A simple example plugin demonstrating the plugin structure",
+      "version": "1.0.0"
+    }
+  ]
+}

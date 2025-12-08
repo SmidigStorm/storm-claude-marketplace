@@ -1,0 +1,11 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "A simple example plugin demonstrating the plugin structure",
+  "author": {
+    "name": "Storm"
+  },
+  "license": "MIT",
+  "keywords": ["example", "starter", "template"],
+  "commands": ["./commands/"]
+}

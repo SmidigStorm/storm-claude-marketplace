@@ -11,9 +11,9 @@
   },
   "plugins": [
     {
-      "name": "hello-world",
-      "source": "./plugins/hello-world",
-      "description": "A simple example plugin demonstrating the plugin structure",
+      "name": "claude-basic-planning",
+      "source": "./plugins/claude-basic-planning",
+      "description": "A structured workflow plugin with Analyze, Plan, and Execute commands",
       "version": "1.0.0"
     }
   ]

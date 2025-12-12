@@ -1,0 +1,12 @@
+{
+  "name": "pm-requirements",
+  "version": "1.0.0",
+  "description": "BDD requirements with Gherkin feature files (Given-When-Then)",
+  "author": {
+    "name": "Storm"
+  },
+  "license": "MIT",
+  "keywords": ["requirements", "bdd", "gherkin", "feature", "acceptance"],
+  "commands": ["./commands/"],
+  "skills": ["./skills/"]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "pm-vision",
+  "version": "1.0.0",
+  "description": "Create and maintain product vision documentation",
+  "author": {
+    "name": "Storm"
+  },
+  "license": "MIT",
+  "keywords": ["product", "vision", "strategy"],
+  "commands": ["./commands/"]
+}

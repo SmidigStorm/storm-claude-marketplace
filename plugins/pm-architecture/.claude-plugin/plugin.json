@@ -1,0 +1,12 @@
+{
+  "name": "pm-architecture",
+  "version": "1.0.0",
+  "description": "Manage tech stack and architecture decisions (ADRs)",
+  "author": {
+    "name": "Storm"
+  },
+  "license": "MIT",
+  "keywords": ["architecture", "adr", "tech-stack", "decisions"],
+  "commands": ["./commands/"],
+  "skills": ["./skills/"]
+}

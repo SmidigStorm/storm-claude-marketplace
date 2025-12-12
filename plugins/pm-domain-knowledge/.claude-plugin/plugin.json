@@ -1,0 +1,12 @@
+{
+  "name": "pm-domain-knowledge",
+  "version": "1.0.0",
+  "description": "Document domain knowledge including entities, processes, and ubiquitous language",
+  "author": {
+    "name": "Storm"
+  },
+  "license": "MIT",
+  "keywords": ["domain", "entities", "processes", "glossary", "ddd"],
+  "commands": ["./commands/"],
+  "skills": ["./skills/"]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "pm-airtable-setup",
+  "version": "1.0.0",
+  "description": "Set up Airtable tables for PM plugins (domain-knowledge, requirements)",
+  "author": {
+    "name": "Storm"
+  },
+  "license": "MIT",
+  "keywords": ["airtable", "setup", "schema"],
+  "commands": ["./commands/"]
+}

@@ -7,5 +7,6 @@
   },
   "license": "MIT",
   "keywords": ["airtable", "setup", "schema"],
-  "commands": ["./commands/"]
+  "commands": ["./commands/"],
+  "skills": ["./skills/"]
 }

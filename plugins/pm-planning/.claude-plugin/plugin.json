@@ -1,0 +1,12 @@
+{
+  "name": "pm-planning",
+  "version": "1.0.0",
+  "description": "Interactive planning from backlog items to implementation plans",
+  "author": {
+    "name": "Storm"
+  },
+  "license": "MIT",
+  "keywords": ["planning", "backlog", "implementation"],
+  "commands": ["./commands/"],
+  "skills": ["./skills/"]
+}

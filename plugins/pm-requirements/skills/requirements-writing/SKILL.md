@@ -54,61 +54,62 @@ Every feature file gets a unique requirement ID for traceability.
 ### ID Format
 
 ```
-[PREFIX]-[NUMBER] [Name]
+[SUB]-[CAP]-[NUMBER] [Name]
 ```
 
-- **PREFIX**: 3-letter code derived from domain folder name
+- **SUB**: 3-letter subdomain prefix (e.g., ADM for "Admission Rules")
+- **CAP**: 3-letter capability prefix (e.g., GRD for "Grade Calculation")
 - **NUMBER**: 3-digit sequential number (001, 002, ...)
 - **Name**: Human-readable requirement name
 
 Examples:
-- `ADM-001 User Registration` (from `requirements/admission/`)
-- `ORD-003 Order Checkout` (from `requirements/orders/`)
-- `PAY-002 Payment Processing` (from `requirements/payments/`)
+- `ADM-GRD-001 Weighted Average` (Admission Rules subdomain, Grade Calculation capability)
+- `ADM-ELG-001 Check Prerequisites` (Admission Rules subdomain, Eligibility capability)
+- `ENR-CRS-001 Register for Courses` (Enrollment subdomain, Course Registration capability)
 
-### Domain Prefix Mapping
+### Prefix Mapping
 
-The prefix is derived from the folder name:
-- `admission` → `ADM`
-- `orders` → `ORD`
-- `payments` → `PAY`
-- `users` → `USR`
-- `inventory` → `INV`
-- `authentication` → `AUT`
+Prefixes are derived from subdomain and capability names:
+- Subdomain "Admission Rules" → `ADM`
+- Capability "Grade Calculation" → `GRD`
+- Capability "Eligibility Criteria" → `ELG`
 
-For custom domains, take the first 3 letters or ask the user for a preferred prefix.
+For new subdomains/capabilities, ask the user for preferred 3-letter prefixes.
 
 ### ID Tag in Feature Files
 
 The requirement ID is added as a tag on the Feature:
 
 ```gherkin
-@ADM-001
-Feature: User Registration
-  As a new user
-  I want to register an account
-  So that I can access the system
+@ADM-GRD-001
+Feature: Weighted Average Calculation
+  As an admission officer
+  I want grades to be calculated as weighted averages
+  So that I can fairly evaluate applicants
 ```
 
 ### Requirements Registry
 
-All requirement IDs are tracked in `requirements/registry.md`:
+All requirement IDs are tracked in `docs/requirements/registry.md`:
 
 ```markdown
 # Requirements Registry
 
-## ADM - Admission
+## Admission (Domain)
+
+### ADM - Admission Rules (Subdomain)
+
+#### GRD - Grade Calculation (Capability)
 
 | ID | Name | File | Status |
 |----|------|------|--------|
-| ADM-001 | User Registration | admission/user-registration.feature | Active |
-| ADM-002 | Email Verification | admission/email-verification.feature | Active |
+| ADM-GRD-001 | Weighted Average | admission/admission-rules/grade-calculation/weighted-average.feature | Active |
 
-## ORD - Orders
+#### ELG - Eligibility Criteria (Capability)
 
 | ID | Name | File | Status |
 |----|------|------|--------|
-| ORD-001 | Create Order | orders/create-order.feature | Active |
+| ADM-ELG-001 | Check Prerequisites | admission/admission-rules/eligibility-criteria/check-prerequisites.feature | Active |
 ```
 
 ### Registry Management Rules
@@ -122,19 +123,27 @@ All requirement IDs are tracked in `requirements/registry.md`:
 
 ### Directory Structure
 
-Feature files are organized in `requirements/` with subdirectories for each domain:
+Feature files are organized in `docs/requirements/` with subdirectories for domain, subdomain, and capability:
 
 ```
-requirements/
-├── registry.md                    # Tracks all requirement IDs
-├── admission/
-│   ├── user-registration.feature  # @ADM-001
-│   └── email-verification.feature # @ADM-002
-├── orders/
-│   ├── create-order.feature       # @ORD-001
-│   └── order-checkout.feature     # @ORD-002
-└── payments/
-    └── payment-processing.feature # @PAY-001
+docs/requirements/
+├── registry.md                              # Tracks all requirement IDs
+└── [domain]/
+    └── [subdomain]/
+        └── [capability]/
+            └── feature-name.feature         # @SUB-CAP-NNN
+```
+
+**Example:**
+```
+docs/requirements/
+├── registry.md
+└── admission/
+    └── admission-rules/
+        ├── grade-calculation/
+        │   └── weighted-average.feature     # @ADM-GRD-001
+        └── eligibility-criteria/
+            └── check-prerequisites.feature  # @ADM-ELG-001
 ```
 
 ### File Naming
@@ -145,9 +154,9 @@ requirements/
 
 ### Auto-Detection Workflow
 
-1. **Read the registry** (`requirements/registry.md`) to get existing IDs
-2. **Search for existing feature files** (use Glob: `**/*.feature`)
-3. **Determine domain** and derive prefix from folder name
+1. **Read the registry** (`docs/requirements/registry.md`) to get existing IDs
+2. **Search for existing feature files** (use Glob: `docs/requirements/**/*.feature`)
+3. **Determine location** (domain, subdomain, capability) and derive prefixes
 4. **Assign next ID** based on registry
 5. **Update registry** after creating the feature file
 

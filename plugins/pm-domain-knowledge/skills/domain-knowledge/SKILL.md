@@ -43,23 +43,24 @@ AI has a strong tendency to:
 
 ### Directory Structure
 
-Domain knowledge is organized in `domains/[domain-name]/` with subdirectories for each type:
+Domain knowledge is organized in `docs/domains/[domain-name]/[subdomain-name]/` with subdirectories for each type:
 
 ```
-domains/
+docs/domains/
 └── [domain-name]/
-    ├── entities/
-    │   ├── _overview.md          (Master ERD with all entities)
-    │   ├── customer.md           (Individual entity file)
-    │   └── order.md
-    ├── processes/
-    │   ├── _overview.md          (Process relationships and flow)
-    │   ├── checkout.md           (Individual process file)
-    │   └── fulfillment.md
-    └── glossary/
-        ├── _overview.md          (Alphabetical index of all terms)
-        ├── sku.md                (Individual term file)
-        └── backorder.md
+    └── [subdomain-name]/
+        ├── entities/
+        │   ├── _overview.md          (Master ERD with all entities)
+        │   ├── customer.md           (Individual entity file)
+        │   └── order.md
+        ├── processes/
+        │   ├── _overview.md          (Process relationships and flow)
+        │   ├── checkout.md           (Individual process file)
+        │   └── fulfillment.md
+        └── glossary/
+            ├── _overview.md          (Alphabetical index of all terms)
+            ├── sku.md                (Individual term file)
+            └── backorder.md
 ```
 
 **File organization:**

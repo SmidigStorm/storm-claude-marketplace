@@ -131,26 +131,27 @@ You can store your work in **markdown files** or **Airtable** - your choice:
 **File structure (markdown approach):**
 ```
 your-project/
-├── docs/
-│   ├── strategy/
-│   │   ├── vision.md
-│   │   ├── tech-stack.md
-│   │   ├── backlog.md
-│   │   └── architecture/
-│   │       └── 001-use-postgres.md
-│   └── plans/
-│       └── user-registration.md
-├── domains/
-│   └── admission/
-│       └── admission-rules/
-│           ├── entities/
-│           ├── processes/
-│           └── glossary/
-└── requirements/
-    └── admission/
-        └── admission-rules/
-            └── grade-calculation/
-                └── weighted-average.feature
+└── docs/
+    ├── strategy/
+    │   ├── vision.md
+    │   ├── tech-stack.md
+    │   ├── backlog.md
+    │   └── architecture/
+    │       └── 001-use-postgres.md
+    ├── domains/
+    │   └── admission/
+    │       └── admission-rules/
+    │           ├── entities/
+    │           ├── processes/
+    │           └── glossary/
+    ├── requirements/
+    │   ├── registry.md
+    │   └── admission/
+    │       └── admission-rules/
+    │           └── grade-calculation/
+    │               └── weighted-average.feature
+    └── plans/
+        └── user-registration.md
 ```
 
 ## Installation

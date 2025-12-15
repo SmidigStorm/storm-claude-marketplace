@@ -19,17 +19,19 @@ Create the required Airtable tables for PM plugins.
 | Table | Fields | Purpose |
 |-------|--------|---------|
 | **Domain** | Name, Description | Top-level domain areas |
-| **Subdomain** | Name, Description, → Domain | Sub-areas within domains |
+| **Subdomain** | Name, Description, Prefix, → Domain | Sub-areas with 3-letter prefix |
+| **Capability** | Name, Description, Prefix, → Subdomain | Functional groupings with 3-letter prefix |
 | **Entity** | Name, Description, → Subdomain | Domain entities |
 | **Attribute** | Name, Datatype, Description, Required, → Entity | Entity properties |
-| **Process** | Name, Description, Trigger, Steps, → Domain | Business processes |
-| **Glossary** | Term, Definition, Context, → Domain | Ubiquitous language |
+| **Relationship** | Name, Description, FromEntity, ToEntity, Cardinality | Entity connections |
+| **Process** | Name, Description, Trigger, Steps, → Subdomain | Business processes |
+| **Glossary** | Term, Definition, Context, → Subdomain | Ubiquitous language |
 
 ### Requirements Tables
 
 | Table | Fields | Purpose |
 |-------|--------|---------|
-| **Requirement** | ReqID, Title, Description, Status, Priority, → Domain | Requirements with MoSCoW |
+| **Requirement** | ReqID, Title, Description, Status, Priority, → Capability | Requirements with MoSCoW (ReqID: SUB-CAP-NNN) |
 | **Rule** | Rule, → Requirement | Business rules |
 | **Example** | Example, ExpectedResult, → Rule | Concrete examples |
 | **OpenQuestion** | Question, Answer, Status, → Requirement | Unresolved questions |
@@ -38,7 +40,23 @@ Create the required Airtable tables for PM plugins.
 
 | Table | Fields | Purpose |
 |-------|--------|---------|
-| **BacklogItem** | Title, Description, Type, Order, Status, → Requirements | Product backlog with ordering |
+| **BacklogItem** | Title, Description, Type, Order, Status, → Requirements, → Recommendation | Product backlog with ordering |
+
+### Optional: Testing Tables
+
+| Table | Fields | Purpose |
+|-------|--------|---------|
+| **TestSuite** | Name, Description | Groups related tests |
+| **Test** | Name, Description, Steps, ExpectedResult, → TestSuite, → Requirement | Individual test cases |
+| **TestRun** | RunDate, Status, Notes, → TestSuite | Execution records |
+
+### Optional: Research Tables
+
+| Table | Fields | Purpose |
+|-------|--------|---------|
+| **Fact** | Fact, Source, Date | Raw research observations |
+| **Insight** | Insight, → Facts | Patterns from facts |
+| **Recommendation** | Recommendation, Priority, → Insights | Actionable suggestions |
 
 ## Workflow
 
@@ -52,17 +70,32 @@ Create the required Airtable tables for PM plugins.
 
 Must create in this order due to relationships:
 
+**Core tables:**
 1. Domain (no dependencies)
 2. Subdomain (links to Domain)
-3. Entity (links to Subdomain)
-4. Attribute (links to Entity)
-5. Process (links to Domain)
-6. Glossary (links to Domain)
-7. Requirement (links to Domain)
-8. Rule (links to Requirement)
-9. Example (links to Rule)
-10. OpenQuestion (links to Requirement)
-11. BacklogItem (links to Requirements)
+3. Capability (links to Subdomain)
+4. Entity (links to Subdomain)
+5. Attribute (links to Entity)
+6. Relationship (links to Entity twice)
+7. Process (links to Subdomain)
+8. Glossary (links to Subdomain)
+9. Requirement (links to Capability)
+10. Rule (links to Requirement)
+11. Example (links to Rule)
+12. OpenQuestion (links to Requirement)
+
+**Optional - Testing:**
+13. TestSuite (no dependencies)
+14. Test (links to TestSuite, Requirement)
+15. TestRun (links to TestSuite)
+
+**Optional - Research:**
+16. Fact (no dependencies)
+17. Insight (links to Fact)
+18. Recommendation (links to Insight)
+
+**Backlog (after all others):**
+19. BacklogItem (links to Requirement, Recommendation)
 
 ## Field Specifications
 
@@ -72,8 +105,7 @@ Must create in this order due to relationships:
   "name": "Domain",
   "fields": [
     {"name": "Name", "type": "singleLineText"},
-    {"name": "Description", "type": "multilineText"},
-    {"name": "Prefix", "type": "singleLineText", "description": "3-letter code for requirement IDs"}
+    {"name": "Description", "type": "multilineText"}
   ]
 }
 ```
@@ -85,7 +117,21 @@ Must create in this order due to relationships:
   "fields": [
     {"name": "Name", "type": "singleLineText"},
     {"name": "Description", "type": "multilineText"},
+    {"name": "Prefix", "type": "singleLineText", "description": "3-letter code (e.g., ADM, ENR)"},
     {"name": "Domain", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Domain table ID>"}}
+  ]
+}
+```
+
+### Capability
+```json
+{
+  "name": "Capability",
+  "fields": [
+    {"name": "Name", "type": "singleLineText"},
+    {"name": "Description", "type": "multilineText"},
+    {"name": "Prefix", "type": "singleLineText", "description": "3-letter code (e.g., GRD, ELG)"},
+    {"name": "Subdomain", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Subdomain table ID>"}}
   ]
 }
 ```
@@ -120,6 +166,22 @@ Must create in this order due to relationships:
 }
 ```
 
+### Relationship
+```json
+{
+  "name": "Relationship",
+  "fields": [
+    {"name": "Name", "type": "singleLineText", "description": "e.g., 'has many', 'belongs to'"},
+    {"name": "Description", "type": "multilineText"},
+    {"name": "FromEntity", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Entity table ID>"}},
+    {"name": "ToEntity", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Entity table ID>"}},
+    {"name": "Cardinality", "type": "singleSelect", "options": {"choices": [
+      {"name": "1:1"}, {"name": "1:N"}, {"name": "N:N"}
+    ]}}
+  ]
+}
+```
+
 ### Process
 ```json
 {
@@ -129,7 +191,7 @@ Must create in this order due to relationships:
     {"name": "Description", "type": "multilineText"},
     {"name": "Trigger", "type": "singleLineText"},
     {"name": "Steps", "type": "multilineText"},
-    {"name": "Domain", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Domain table ID>"}}
+    {"name": "Subdomain", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Subdomain table ID>"}}
   ]
 }
 ```
@@ -142,7 +204,7 @@ Must create in this order due to relationships:
     {"name": "Term", "type": "singleLineText"},
     {"name": "Definition", "type": "multilineText"},
     {"name": "Context", "type": "multilineText"},
-    {"name": "Domain", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Domain table ID>"}}
+    {"name": "Subdomain", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Subdomain table ID>"}}
   ]
 }
 ```
@@ -152,7 +214,7 @@ Must create in this order due to relationships:
 {
   "name": "Requirement",
   "fields": [
-    {"name": "ReqID", "type": "singleLineText", "description": "e.g., ADM-001"},
+    {"name": "ReqID", "type": "singleLineText", "description": "Format: SUB-CAP-NNN (e.g., ADM-GRD-001)"},
     {"name": "Title", "type": "singleLineText"},
     {"name": "Description", "type": "multilineText"},
     {"name": "Status", "type": "singleSelect", "options": {"choices": [
@@ -165,7 +227,7 @@ Must create in this order due to relationships:
       {"name": "Could", "color": "yellowLight1"},
       {"name": "Wont", "color": "grayLight1"}
     ]}},
-    {"name": "Domain", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Domain table ID>"}}
+    {"name": "Capability", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Capability table ID>"}}
   ]
 }
 ```
@@ -208,6 +270,84 @@ Must create in this order due to relationships:
 }
 ```
 
+### TestSuite (Optional)
+```json
+{
+  "name": "TestSuite",
+  "fields": [
+    {"name": "Name", "type": "singleLineText"},
+    {"name": "Description", "type": "multilineText"}
+  ]
+}
+```
+
+### Test (Optional)
+```json
+{
+  "name": "Test",
+  "fields": [
+    {"name": "Name", "type": "singleLineText"},
+    {"name": "Description", "type": "multilineText"},
+    {"name": "Steps", "type": "multilineText"},
+    {"name": "ExpectedResult", "type": "multilineText"},
+    {"name": "TestSuite", "type": "multipleRecordLinks", "options": {"linkedTableId": "<TestSuite table ID>"}},
+    {"name": "Requirement", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Requirement table ID>"}}
+  ]
+}
+```
+
+### TestRun (Optional)
+```json
+{
+  "name": "TestRun",
+  "fields": [
+    {"name": "RunDate", "type": "date"},
+    {"name": "Status", "type": "singleSelect", "options": {"choices": [
+      {"name": "Pass"}, {"name": "Fail"}, {"name": "Partial"}, {"name": "Skipped"}
+    ]}},
+    {"name": "Notes", "type": "multilineText"},
+    {"name": "TestSuite", "type": "multipleRecordLinks", "options": {"linkedTableId": "<TestSuite table ID>"}}
+  ]
+}
+```
+
+### Fact (Optional)
+```json
+{
+  "name": "Fact",
+  "fields": [
+    {"name": "Fact", "type": "multilineText"},
+    {"name": "Source", "type": "singleLineText"},
+    {"name": "Date", "type": "date"}
+  ]
+}
+```
+
+### Insight (Optional)
+```json
+{
+  "name": "Insight",
+  "fields": [
+    {"name": "Insight", "type": "multilineText"},
+    {"name": "Facts", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Fact table ID>"}}
+  ]
+}
+```
+
+### Recommendation (Optional)
+```json
+{
+  "name": "Recommendation",
+  "fields": [
+    {"name": "Recommendation", "type": "multilineText"},
+    {"name": "Priority", "type": "singleSelect", "options": {"choices": [
+      {"name": "High"}, {"name": "Medium"}, {"name": "Low"}
+    ]}},
+    {"name": "Insights", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Insight table ID>"}}
+  ]
+}
+```
+
 ### BacklogItem
 ```json
 {
@@ -225,7 +365,8 @@ Must create in this order due to relationships:
     {"name": "Status", "type": "singleSelect", "options": {"choices": [
       {"name": "Backlog"}, {"name": "Ready"}, {"name": "In Progress"}, {"name": "Done"}
     ]}},
-    {"name": "Requirements", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Requirement table ID>"}}
+    {"name": "Requirements", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Requirement table ID>"}},
+    {"name": "Recommendation", "type": "multipleRecordLinks", "options": {"linkedTableId": "<Recommendation table ID>"}}
   ]
 }
 ```
@@ -235,3 +376,5 @@ Must create in this order due to relationships:
 - Delete the default "Table 1" after setup if not needed
 - Tables can be customized after creation
 - Links are created automatically when specifying linkedTableId
+- Optional tables (Testing, Research) can be skipped if not needed
+- The ReqID format SUB-CAP-NNN combines Subdomain prefix + Capability prefix + sequence number

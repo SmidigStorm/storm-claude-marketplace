@@ -30,18 +30,18 @@ Ask the user what they want to do:
 
 Follow this process - **STOP at each step until user provides information**:
 
-1. **Read the registry** (`requirements/registry.md`)
+1. **Read the registry** (`docs/requirements/registry.md`)
    - Check existing requirement IDs
    - If registry doesn't exist, create it
 
-2. **Determine domain**
-   - Ask which domain this feature belongs to
-   - Derive prefix from folder name (admission → ADM)
-   - If new domain, ask user for preferred 3-letter prefix
+2. **Determine location**
+   - Ask which domain, subdomain, and capability this feature belongs to
+   - Derive prefixes: subdomain (3 letters) + capability (3 letters)
+   - If new, ask user for preferred 3-letter prefixes
 
 3. **Assign requirement ID**
-   - Find next available number for that domain
-   - Format: `[PREFIX]-[NUMBER]` (e.g., ADM-001)
+   - Find next available number for that subdomain-capability
+   - Format: `[SUB]-[CAP]-[NUMBER]` (e.g., ADM-GRD-001)
    - Show the ID to user for confirmation
 
 4. **Ask about domain knowledge**
@@ -54,33 +54,44 @@ Follow this process - **STOP at each step until user provides information**:
    - "What error messages should be shown?"
 
 6. **Generate feature file**
-   - Add requirement ID as tag: `@ADM-001`
+   - Add requirement ID as tag: `@ADM-GRD-001`
    - Organize with Rule sections
    - Use kebab-case filename
 
 7. **Update registry**
-   - Add new entry to `requirements/registry.md`
+   - Add new entry to `docs/requirements/registry.md`
    - Include: ID, Name, File path, Status
 
 ## Requirement ID Format
 
 ```
-[PREFIX]-[NUMBER] [Name]
+[SUB]-[CAP]-[NUMBER] [Name]
 ```
 
-- **PREFIX**: 3 letters from domain folder (admission → ADM)
+- **SUB**: 3-letter subdomain prefix (e.g., ADM for "Admission Rules")
+- **CAP**: 3-letter capability prefix (e.g., GRD for "Grade Calculation")
 - **NUMBER**: 3 digits, sequential (001, 002, ...)
 - **Name**: Human-readable name
 
 ## Output Structure
 
 ```
-requirements/
-├── registry.md                    # Requirement ID registry
-├── admission/
-│   └── user-registration.feature  # @ADM-001
-└── orders/
-    └── create-order.feature       # @ORD-001
+docs/requirements/
+├── registry.md                              # Requirement ID registry
+└── [domain]/
+    └── [subdomain]/
+        └── [capability]/
+            └── feature-name.feature         # @SUB-CAP-NNN
+```
+
+**Example:**
+```
+docs/requirements/
+├── registry.md
+└── admission/
+    └── admission-rules/
+        └── grade-calculation/
+            └── weighted-average.feature     # @ADM-GRD-001
 ```
 
 ## Registry Format
@@ -88,33 +99,41 @@ requirements/
 ```markdown
 # Requirements Registry
 
-## ADM - Admission
+## Admission (Domain)
+
+### ADM - Admission Rules (Subdomain)
+
+#### GRD - Grade Calculation (Capability)
 
 | ID | Name | File | Status |
 |----|------|------|--------|
-| ADM-001 | User Registration | admission/user-registration.feature | Active |
+| ADM-GRD-001 | Weighted Average | admission/admission-rules/grade-calculation/weighted-average.feature | Active |
 ```
 
 ## Example Dialogue
 
 ```
-User: "Create requirements for user registration"
+User: "Create requirements for grade calculation"
 
 GOOD Response:
-"I'll help create requirements for user registration.
+"I'll help create requirements for grade calculation.
 
-First, let me check the registry... [reads requirements/registry.md]
+First, let me check the registry... [reads docs/requirements/registry.md]
 
-This belongs in the 'admission' domain (prefix: ADM).
-The next available ID is ADM-001.
+Some questions about where this belongs:
+1. Which domain? (e.g., Admission)
+2. Which subdomain? (e.g., Admission Rules - prefix ADM)
+3. Which capability? (e.g., Grade Calculation - prefix GRD)
 
-Your requirement will be: ADM-001 User Registration
+The next available ID would be: ADM-GRD-001
 
-Now some questions:
+Your requirement will be: ADM-GRD-001 Weighted Average Calculation
+
+Now some questions about the requirement:
 1. Where do you keep domain knowledge?
 2. What entities are involved?
-3. What validations are needed?
-4. What happens if email is already taken?"
+3. What business rules apply?
+4. What happens with missing grades?"
 ```
 
 ## Remember

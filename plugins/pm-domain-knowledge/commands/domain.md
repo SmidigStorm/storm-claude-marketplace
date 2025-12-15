@@ -21,14 +21,14 @@ Document domain knowledge systematically using the domain-knowledge skill.
 
 Ask the user what they want to do:
 
-1. **Document entity** - Create or update an entity in `domains/[domain]/entities/`
-2. **Document process** - Create or update a process in `domains/[domain]/processes/`
-3. **Add glossary term** - Add a term to `domains/[domain]/glossary/`
+1. **Document entity** - Create or update an entity in `docs/domains/[domain]/entities/`
+2. **Document process** - Create or update a process in `docs/domains/[domain]/processes/`
+3. **Add glossary term** - Add a term to `docs/domains/[domain]/glossary/`
 4. **View domain** - Show existing domain documentation
 
 ### For All Options
 
-1. First check if `domains/` directory exists
+1. First check if `docs/domains/` directory exists
 2. Ask which domain area this belongs to (or create new)
 3. Follow the dialogue-first approach from the skill
 4. Create documentation only after user confirms details
@@ -36,17 +36,18 @@ Ask the user what they want to do:
 ### Documentation Structure
 
 ```
-domains/
+docs/domains/
 └── [domain-name]/
-    ├── entities/
-    │   ├── _overview.md
-    │   └── {entity}.md
-    ├── processes/
-    │   ├── _overview.md
-    │   └── {process}.md
-    └── glossary/
-        ├── _overview.md
-        └── {term}.md
+    └── [subdomain-name]/
+        ├── entities/
+        │   ├── _overview.md
+        │   └── {entity}.md
+        ├── processes/
+        │   ├── _overview.md
+        │   └── {process}.md
+        └── glossary/
+            ├── _overview.md
+            └── {term}.md
 ```
 
 ## Example Dialogue

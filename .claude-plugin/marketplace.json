@@ -1,7 +1,7 @@
 {
   "name": "storm-claude-marketplace",
   "metadata": {
-    "description": "A curated collection of Claude Code plugins",
+    "description": "A curated collection of Claude Code plugins featuring the Product Management Toolkit",
     "version": "1.0.0",
     "pluginRoot": "../plugins"
   },
@@ -10,12 +10,6 @@
     "email": "storm@example.com"
   },
   "plugins": [
-    {
-      "name": "claude-basic-planning",
-      "source": "./plugins/claude-basic-planning",
-      "description": "A structured workflow plugin with Analyze, Plan, and Execute commands",
-      "version": "1.0.0"
-    },
     {
       "name": "pm-vision",
       "source": "./plugins/pm-vision",
@@ -29,21 +23,33 @@
       "version": "1.0.0"
     },
     {
-      "name": "pm-prioritization",
-      "source": "./plugins/pm-prioritization",
-      "description": "Manage product backlog with MoSCoW prioritization",
-      "version": "1.0.0"
-    },
-    {
       "name": "pm-domain-knowledge",
       "source": "./plugins/pm-domain-knowledge",
       "description": "Document domain knowledge including entities, processes, and ubiquitous language",
       "version": "1.0.0"
     },
     {
+      "name": "pm-prioritization",
+      "source": "./plugins/pm-prioritization",
+      "description": "Manage product backlog with MoSCoW prioritization",
+      "version": "1.0.0"
+    },
+    {
       "name": "pm-requirements",
       "source": "./plugins/pm-requirements",
       "description": "BDD requirements with Gherkin feature files (Given-When-Then)",
+      "version": "1.0.0"
+    },
+    {
+      "name": "pm-planning",
+      "source": "./plugins/pm-planning",
+      "description": "Implementation planning and execution with specialized agents for codebase exploration, architecture design, and code review",
+      "version": "2.0.0"
+    },
+    {
+      "name": "pm-airtable-setup",
+      "source": "./plugins/pm-airtable-setup",
+      "description": "Set up Airtable tables for PM plugins",
       "version": "1.0.0"
     }
   ]

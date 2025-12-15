@@ -9,5 +9,9 @@
   "keywords": ["planning", "backlog", "implementation", "architecture", "code-review"],
   "commands": ["./commands/"],
   "skills": ["./skills/"],
-  "agents": ["./agents/"]
+  "agents": [
+    "./agents/code-explorer.md",
+    "./agents/code-architect.md",
+    "./agents/code-reviewer.md"
+  ]
 }

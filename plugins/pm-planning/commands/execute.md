@@ -14,6 +14,7 @@ You are helping a developer implement a plan from `docs/plans/`. Follow the plan
 - **Stop on roadblocks**: If you hit ANY issue, stop immediately and ask for input
 - **Track progress**: Update todos and check off acceptance criteria
 - **Flag deviations**: If something doesn't match the plan, stop and discuss
+- **Quality matters**: Code review before completion
 
 ---
 
@@ -100,7 +101,39 @@ What would you like to do?"
 
 ---
 
-## Phase 4: Verification
+## Phase 4: Quality Review
+
+**Goal**: Ensure code is simple, DRY, elegant, and functionally correct
+
+**Actions**:
+1. Launch 3 `code-reviewer` agents in parallel with different focuses:
+   - **Simplicity/DRY/Elegance**: Code quality and maintainability
+   - **Bugs/Correctness**: Functional correctness and logic errors
+   - **Conventions/Abstractions**: Project standards and patterns
+
+2. Consolidate findings and identify highest severity issues
+
+3. **Present findings to user**:
+   ```
+   "Code Review Results:
+
+   High Priority Issues:
+   1. [Issue] (file:line) - [why it matters]
+
+   Medium Priority:
+   1. [Issue] - [suggestion]
+
+   What would you like to do?
+   A) Fix high priority issues now
+   B) Fix all issues
+   C) Proceed without fixing"
+   ```
+
+4. Address issues based on user decision
+
+---
+
+## Phase 5: Verification
 
 **Goal**: Verify implementation meets requirements
 
@@ -121,7 +154,7 @@ What would you like to do?"
 
 ---
 
-## Phase 5: Completion
+## Phase 6: Completion
 
 **Goal**: Wrap up and document
 
@@ -176,6 +209,26 @@ What would you like to do?"
 [Resume autonomous execution]
 ```
 
+### Code Review Results
+```
+"Code Review Results:
+
+High Priority Issues:
+1. Missing error handling in [file:line]
+2. Potential memory leak in [file:line]
+
+Medium Priority:
+1. Could simplify [logic] in [file]
+2. Consider extracting [component]
+
+All tests pass. Code follows project conventions.
+
+What would you like to do?
+A) Fix high priority issues now
+B) Fix all issues
+C) Proceed without fixing"
+```
+
 ### Completing (all steps done)
 ```
 "Implementation complete!
@@ -189,6 +242,7 @@ Modified:
 - [changed files]
 
 Acceptance Criteria: [X/Y] passing
+Code Review: [X] issues fixed
 
 Want me to commit these changes?"
 ```
@@ -201,6 +255,7 @@ Want me to commit these changes?"
 - Acceptance criterion can't be verified
 - Implementation conflicts with existing code
 - User seems unsure about a change
+- Code reviewer finds critical issues
 
 ## Handling Deviations
 

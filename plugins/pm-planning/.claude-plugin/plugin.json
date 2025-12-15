@@ -1,12 +1,13 @@
 {
   "name": "pm-planning",
-  "version": "1.0.0",
-  "description": "Interactive planning from backlog items to implementation plans",
+  "version": "2.0.0",
+  "description": "Interactive planning from backlog items to implementation plans with specialized agents for codebase exploration, architecture design, and code review",
   "author": {
     "name": "Storm"
   },
   "license": "MIT",
-  "keywords": ["planning", "backlog", "implementation"],
+  "keywords": ["planning", "backlog", "implementation", "architecture", "code-review"],
   "commands": ["./commands/"],
-  "skills": ["./skills/"]
+  "skills": ["./skills/"],
+  "agents": ["./agents/"]
 }

@@ -1,102 +1,221 @@
 # Storm Claude Marketplace
 
-A curated collection of Claude Code plugins.
+A curated collection of Claude Code plugins, featuring the **Product Management Toolkit** - a suite of plugins that help you go from idea to implementation with structured product development practices.
 
-## Using This Marketplace
+## Product Management Toolkit
 
-### Add the Marketplace
+Build products systematically with Claude as your PM partner. The toolkit guides you through the entire product development lifecycle:
 
-```bash
-/plugin marketplace add storm/storm-claude-marketplace
+```mermaid
+flowchart TD
+    subgraph Strategy ["Strategy & Foundation"]
+        V["/vision"]
+        A["/architecture"]
+    end
+
+    subgraph Understanding ["Domain Understanding"]
+        D["/domain"]
+    end
+
+    subgraph Planning ["What to Build"]
+        B["/backlog"]
+        R["/requirements"]
+    end
+
+    subgraph Execution ["Building It"]
+        P["/plan"]
+        E["/execute"]
+    end
+
+    V --> B
+    A --> P
+    D --> R
+    B --> P
+    R --> P
+    P --> E
 ```
 
-Or using a git URL:
+### The Workflow
+
+**1. Start with Strategy**
+
+- `/vision` - Define who you're building for and why it matters
+- `/architecture` - Document your tech stack and key decisions (ADRs)
+
+**2. Understand Your Domain**
+
+- `/domain` - Capture domain knowledge: entities, processes, and glossary terms
+
+**3. Decide What to Build**
+
+- `/backlog` - Manage your product backlog with MoSCoW prioritization
+- `/requirements` - Write BDD requirements in Gherkin (Given-When-Then)
+
+**4. Plan and Execute**
+
+- `/plan` - Create implementation plans from backlog items
+- `/execute` - Implement the plan step by step
+
+### How Things Connect
+
+```mermaid
+flowchart LR
+    subgraph Inputs
+        DK["Domain Knowledge"]
+        BL["Backlog Item"]
+        REQ["Requirements"]
+    end
+
+    subgraph Output
+        PLAN["Implementation Plan"]
+    end
+
+    DK -->|informs| REQ
+    REQ -->|linked to| BL
+    BL -->|becomes| PLAN
+    REQ -->|acceptance criteria| PLAN
+```
+
+- **Domain Knowledge** helps you write accurate requirements (you understand the entities and rules)
+- **Requirements** get linked to **Backlog Items** (what work implements what requirement)
+- **Planning** pulls from both - the backlog item tells you *what* to build, requirements tell you *how it should behave*
+
+### Domain Model
+
+The toolkit uses a structured hierarchy for organizing domain knowledge and requirements:
+
+```mermaid
+flowchart TD
+    subgraph "Domain Knowledge"
+        DOM[Domain]
+        SUB[Subdomain]
+        ENT[Entity]
+        PROC[Process]
+        GLOSS[Glossary]
+
+        DOM --> SUB
+        SUB --> ENT
+        SUB --> PROC
+        SUB --> GLOSS
+    end
+
+    subgraph "Requirements"
+        DOM2[Domain]
+        SUB2["Subdomain (3-letter prefix)"]
+        CAP["Capability (3-letter prefix)"]
+        REQ2["Requirement (ID: SUB-CAP-NNN)"]
+
+        DOM2 --> SUB2
+        SUB2 --> CAP
+        CAP --> REQ2
+    end
+```
+
+**Example:**
+```
+Domain: Admission
+└── Subdomain: Admission Rules (ADM)
+    └── Capability: Grade Calculation (GRD)
+        └── Requirement: ADM-GRD-001 - Calculate weighted average
+```
+
+### File-based vs Airtable
+
+You can store your work in **markdown files** or **Airtable** - your choice:
+
+| Approach | Best For | Commands |
+|----------|----------|----------|
+| **File-based** | Git-friendly, works offline, lives with code | `/vision`, `/domain`, `/backlog`, `/requirements`, `/plan` |
+| **Airtable** | Visual dashboards, collaboration, filtering | `/airtable-setup`, `/domain-airtable`, `/backlog-airtable`, `/requirements-airtable`, `/plan-airtable` |
+
+**File structure (markdown approach):**
+```
+your-project/
+├── docs/
+│   ├── strategy/
+│   │   ├── vision.md
+│   │   ├── tech-stack.md
+│   │   ├── backlog.md
+│   │   └── architecture/
+│   │       └── 001-use-postgres.md
+│   └── plans/
+│       └── user-registration.md
+├── domains/
+│   └── admission/
+│       └── admission-rules/
+│           ├── entities/
+│           ├── processes/
+│           └── glossary/
+└── requirements/
+    └── admission/
+        └── admission-rules/
+            └── grade-calculation/
+                └── weighted-average.feature
+```
+
+## Installation
+
+### Option 1: Add the Marketplace
+
+In Claude Code, run:
+
+```
+/plugins
+```
+
+Select "New marketplace", then paste:
+
+```
+git@github.com:SmidigStorm/storm-claude-marketplace.git
+```
+
+### Option 2: Command Line
 
 ```bash
-/plugin marketplace add https://github.com/storm/storm-claude-marketplace.git
+claude /plugin marketplace add SmidigStorm/storm-claude-marketplace
 ```
 
 ### Browse and Install Plugins
 
-After adding the marketplace, browse available plugins:
+After adding the marketplace:
 
 ```bash
-/plugin
+/plugins
 ```
 
 Install a specific plugin:
 
 ```bash
-/plugin install plugin-name@storm-claude-marketplace
+/plugin install pm-vision@storm-claude-marketplace
 ```
 
 ## Available Plugins
 
+### Product Management Toolkit
+
 | Plugin | Description |
 |--------|-------------|
-| [hello-world](./plugins/hello-world) | A simple example plugin demonstrating the plugin structure |
+| [pm-vision](./plugins/pm-vision) | Create and maintain product vision documentation |
+| [pm-architecture](./plugins/pm-architecture) | Manage tech stack and architecture decisions (ADRs) |
+| [pm-domain-knowledge](./plugins/pm-domain-knowledge) | Document domain entities, processes, and glossary |
+| [pm-prioritization](./plugins/pm-prioritization) | Manage product backlog with MoSCoW prioritization |
+| [pm-requirements](./plugins/pm-requirements) | BDD requirements with Gherkin feature files |
+| [pm-planning](./plugins/pm-planning) | Create and execute implementation plans |
+| [pm-airtable-setup](./plugins/pm-airtable-setup) | Set up Airtable tables for PM plugins |
 
-## Repository Structure
+## Quick Start
 
-```
-storm-claude-marketplace/
-├── .claude-plugin/
-│   └── marketplace.json    # Marketplace configuration
-├── plugins/                # Individual plugins
-│   └── plugin-name/
-│       ├── .claude-plugin/
-│       │   └── plugin.json # Plugin configuration
-│       ├── commands/       # Slash commands (optional)
-│       ├── agents/         # Custom agents (optional)
-│       ├── skills/         # Agent skills (optional)
-│       └── README.md
-├── README.md
-└── CONTRIBUTING.md
-```
+**Starting a new project?** Run these in order:
 
-## Creating a Plugin
+1. `/vision` - Define your product vision
+2. `/architecture` - Document initial tech decisions
+3. `/domain` - Start capturing domain knowledge as you learn
+4. `/backlog` - Add your first features
+5. `/requirements` - Write requirements for a backlog item
+6. `/plan` - Plan the implementation
+7. `/execute` - Build it!
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed instructions on creating and submitting plugins.
-
-### Quick Start
-
-1. Create a new directory under `plugins/`:
-
-```bash
-mkdir -p plugins/my-plugin/.claude-plugin
-mkdir -p plugins/my-plugin/commands
-```
-
-2. Create `plugins/my-plugin/.claude-plugin/plugin.json`:
-
-```json
-{
-  "name": "my-plugin",
-  "version": "1.0.0",
-  "description": "What your plugin does",
-  "author": {
-    "name": "Your Name"
-  },
-  "license": "MIT",
-  "commands": ["./commands/"]
-}
-```
-
-3. Create a command in `plugins/my-plugin/commands/my-command.md`:
-
-```markdown
----
-description: Brief description of the command
----
-
-# My Command
-
-Instructions for Claude when this command is invoked.
-```
-
-4. Add your plugin to `.claude-plugin/marketplace.json`
-
-5. Submit a pull request!
+**Joining an existing project?** Start with `/domain` to explore what's documented, then pick up wherever the team is in the workflow.
 
 ## License
 

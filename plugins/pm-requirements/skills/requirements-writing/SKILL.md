@@ -374,12 +374,20 @@ Rule: Password must meet security requirements
       | NOLOWERCASE1     | Must include lowercase     |
 ```
 
-**2. DRY - Use Scenario Outline**
+**2. CRITICAL: Never Duplicate Scenarios - Use Scenario Outline**
 
-When you have similar scenarios varying only in data, ALWAYS use Scenario Outline with Examples table instead of multiple separate scenarios.
+> "Copying and pasting scenarios to use different values quickly becomes tedious and repetitive." — [Cucumber Documentation](https://cucumber.io/docs/gherkin/reference/)
 
-**Repetitive (avoid):**
+**The Rule:** If you see multiple scenarios with the same steps but different data values, you MUST refactor into a Scenario Outline. This is not optional.
+
+**How to spot duplication:**
+- Same Given-When-Then structure
+- Only values in quotes or numbers change
+- You're copy-pasting and changing one field
+
+**Duplicated scenarios (NEVER do this):**
 ```gherkin
+# BAD - Three scenarios that are essentially the same
 Scenario: Admin can access dashboard
   Given I am logged in as "admin"
   When I navigate to the dashboard
@@ -396,8 +404,9 @@ Scenario: Guest cannot access dashboard
   Then I should see "Access denied"
 ```
 
-**DRY with Scenario Outline (preferred):**
+**Scenario Outline (ALWAYS do this instead):**
 ```gherkin
+# GOOD - One template, multiple examples
 Scenario Outline: Role-based dashboard access
   Given I am logged in as "<role>"
   When I navigate to the dashboard
@@ -409,6 +418,24 @@ Scenario Outline: Role-based dashboard access
     | manager | the dashboard |
     | guest   | Access denied |
 ```
+
+**Scenario Outline best practices:**
+- Use descriptive parameter names: `<student_name>` not `<input1>`
+- Each row should test a distinct business case
+- Group related examples using multiple Examples blocks with tags:
+  ```gherkin
+  @positive
+  Examples: Authorized users
+    | role    | result        |
+    | admin   | the dashboard |
+    | manager | the dashboard |
+
+  @negative
+  Examples: Unauthorized users
+    | role    | result        |
+    | guest   | Access denied |
+    | blocked | Access denied |
+  ```
 
 ### Scenario Titles
 
@@ -455,9 +482,44 @@ Titles should be short one-liners that summarize the behavior.
    - Use domain terminology
    - Match language from domain documentation
 
-**9. Specific Examples**
-   - Good: `Given the customer "John Smith" with order "ORD-123"`
-   - Avoid: `Given a customer with an order`
+**9. Vivid, Concrete Examples (Background AND Scenarios)**
+
+   Use realistic, specific values that tell a story - both in Background setup and Scenario steps.
+
+   **Background - Use data tables, not generic statements:**
+   ```gherkin
+   # GOOD - Concrete data that readers can understand
+   Background:
+     Given the following students exist:
+       | Name        | Email                | Program    |
+       | Emma Wilson | emma@university.edu  | Psychology |
+       | James Chen  | james@university.edu | Economics  |
+
+   # BAD - Generic, tells nothing
+   Background:
+     Given that there is data in the system
+     Given that students exist
+   ```
+
+   **Scenarios - Use vivid, realistic values:**
+   ```gherkin
+   # GOOD - Specific, meaningful values
+   When I filter by the domain "Admission"
+   When I search for student "Emma Wilson"
+   Then I should see the course "Introduction to Psychology"
+
+   # BAD - Generic placeholders
+   When I choose to filter by domain
+   When I search for a student
+   When I select option "X"
+   Then I should see results
+   ```
+
+   **Why this matters:**
+   - Readers understand the feature without needing code context
+   - Examples serve as documentation
+   - Stakeholders can validate scenarios against real use cases
+   - Tests become self-explanatory
 
 **10. Independent Scenarios**
    - Each scenario should run independently

@@ -7,7 +7,6 @@
   },
   "license": "MIT",
   "keywords": ["planning", "backlog", "implementation", "architecture", "code-review"],
-  "commands": ["./commands/"],
   "skills": ["./skills/"],
   "agents": [
     "./agents/code-explorer.md",

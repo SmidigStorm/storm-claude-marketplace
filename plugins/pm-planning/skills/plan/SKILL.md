@@ -1,4 +1,5 @@
 ---
+name: plan
 description: Guided implementation planning with codebase understanding and requirement focus
 argument-hint: Optional backlog item description
 ---

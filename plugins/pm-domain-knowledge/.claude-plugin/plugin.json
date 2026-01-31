@@ -7,6 +7,5 @@
   },
   "license": "MIT",
   "keywords": ["domain", "entities", "processes", "glossary", "ddd"],
-  "commands": ["./commands/"],
   "skills": ["./skills/"]
 }

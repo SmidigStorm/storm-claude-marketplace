@@ -1,6 +1,6 @@
 ---
 name: requirements
-description: Write BDD requirements in Gherkin format. Guides the user through the process and finds reusable steps.
+description: Write BDD requirements in Gherkin format. Guides the user through the process.
 ---
 
 # /requirements
@@ -14,7 +14,7 @@ Write new BDD requirements in Gherkin format.
 **First:** Read `.claude/rules/gherkin-conventions.md` to understand the project's conventions for:
 - Folder structure (Domain → Subdomain → Capability)
 - Feature ID format (`@DOM-SUB-CAP-NNN`)
-- Tags (priority, status, type)
+- Tags (priority, status)
 - Actors
 
 ### 1. Understand the Need

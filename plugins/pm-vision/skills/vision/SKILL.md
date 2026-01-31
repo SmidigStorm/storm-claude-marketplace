@@ -1,4 +1,5 @@
 ---
+name: vision
 description: Create or update the product vision document
 ---
 

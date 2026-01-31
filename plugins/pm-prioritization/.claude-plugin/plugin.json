@@ -1,11 +1,11 @@
 {
   "name": "pm-prioritization",
   "version": "1.0.0",
-  "description": "Manage product backlog with MoSCoW prioritization",
+  "description": "Manage product backlog as an ordered priority list",
   "author": {
     "name": "Storm"
   },
   "license": "MIT",
-  "keywords": ["backlog", "prioritization", "moscow", "features"],
-  "commands": ["./commands/"]
+  "keywords": ["backlog", "prioritization", "features"],
+  "skills": ["./skills/"]
 }

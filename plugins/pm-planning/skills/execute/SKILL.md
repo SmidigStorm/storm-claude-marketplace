@@ -1,4 +1,5 @@
 ---
+name: execute
 description: Execute an implementation plan step by step
 argument-hint: Plan filename (e.g., user-registration)
 ---

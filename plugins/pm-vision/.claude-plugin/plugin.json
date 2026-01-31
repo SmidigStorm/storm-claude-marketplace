@@ -7,5 +7,5 @@
   },
   "license": "MIT",
   "keywords": ["product", "vision", "strategy"],
-  "commands": ["./commands/"]
+  "skills": ["./skills/"]
 }

@@ -7,6 +7,5 @@
   },
   "license": "MIT",
   "keywords": ["architecture", "adr", "tech-stack", "decisions"],
-  "commands": ["./commands/"],
   "skills": ["./skills/"]
 }

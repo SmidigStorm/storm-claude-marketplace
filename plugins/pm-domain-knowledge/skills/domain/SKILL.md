@@ -1,4 +1,5 @@
 ---
+name: domain
 description: Document domain knowledge including entities, processes, and ubiquitous language
 ---
 

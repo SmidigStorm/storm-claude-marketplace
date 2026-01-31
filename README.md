@@ -48,7 +48,7 @@ flowchart TD
 
 **3. Decide What to Build**
 
-- `/backlog` - Manage your product backlog with MoSCoW prioritization
+- `/backlog` - Manage your product backlog as an ordered priority list
 - `/requirements` - Write BDD requirements in Gherkin (Given-When-Then)
 
 **4. Plan and Execute**
@@ -190,7 +190,7 @@ Install a specific plugin:
 | [pm-vision](./plugins/pm-vision) | Create and maintain product vision documentation |
 | [pm-architecture](./plugins/pm-architecture) | Manage tech stack and architecture decisions (ADRs) |
 | [pm-domain-knowledge](./plugins/pm-domain-knowledge) | Document domain entities, processes, and glossary |
-| [pm-prioritization](./plugins/pm-prioritization) | Manage product backlog with MoSCoW prioritization |
+| [pm-prioritization](./plugins/pm-prioritization) | Manage product backlog as an ordered priority list |
 | [pm-requirements](./plugins/pm-requirements) | BDD requirements with Gherkin feature files |
 | [pm-planning](./plugins/pm-planning) | Create and execute implementation plans |
 

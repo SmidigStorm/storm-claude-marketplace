@@ -1,4 +1,5 @@
 ---
+name: architecture
 description: Manage tech stack and architecture decisions
 ---
 

@@ -11,7 +11,8 @@ Write new BDD requirements in Gherkin format.
 
 ### 0. Read Conventions
 
-**First:** Read `.claude/rules/gherkin-conventions.md` to understand the project's conventions for:
+**First:** Read [bdd-guide.md](bdd-guide.md) to understand:
+- BDD best practices
 - Folder structure (Domain → Subdomain → Capability)
 - Feature ID format (`@DOM-SUB-CAP-NNN`)
 - Tags (priority, status)
@@ -35,7 +36,7 @@ For each scenario, ask about:
 
 ### 3. Generate Feature File
 
-**Location:** Follow the folder structure in `rules/gherkin-conventions.md`:
+**Location:** Follow the folder structure in bdd-guide.md:
 ```
 requirements/[NN] [Domain]/[NN] [Subdomain]/[NN] [Capability]/feature-name.feature
 ```
@@ -77,6 +78,5 @@ This scans all `.feature` files and generates an updated overview with ID, featu
 
 ## Resources
 
-- For BDD best practices, see [bdd-guide.md](bdd-guide.md)
-- For a complete example, see [examples/gherkin-example.feature](examples/gherkin-example.feature)
-- For project-specific rules, see `rules/gherkin-conventions.md`
+- [bdd-guide.md](bdd-guide.md) - BDD best practices and project conventions
+- [examples/gherkin-example.feature](examples/gherkin-example.feature) - Complete example

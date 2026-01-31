@@ -18,14 +18,25 @@ Write new BDD requirements in Gherkin format.
 - Tags (priority, status)
 - Actors
 
-### 1. Understand the Need
+### 1. Read Domain Knowledge
+
+**Before writing requirements**, search for and read existing domain documentation:
+
+1. Look for entity definitions in `docs/domains/*/entities/` or similar paths
+2. Read the `_overview.md` if it exists
+3. Read entity files relevant to the feature being specified
+4. Understand existing attributes, relationships, and business rules
+
+This ensures requirements align with the established domain model and use correct terminology.
+
+### 2. Understand the Need
 
 Ask the user:
 - What should the functionality do?
 - Who are the actors?
 - What terms/expressions should be used?
 
-### 2. Define Scenarios
+### 3. Define Scenarios
 
 For each scenario, ask about:
 - Precondition (Given)
@@ -34,7 +45,7 @@ For each scenario, ask about:
 
 **NEVER assume error messages or business logic - ask!**
 
-### 3. Generate Feature File
+### 4. Generate Feature File
 
 **Location:** Follow the folder structure in bdd-guide.md:
 ```
@@ -66,7 +77,7 @@ Feature: [ID] [Name]
 
 **When uncertain:** Document with `# OPEN QUESTIONS:` right after the feature description (after "So that...").
 
-### 4. Update Overview
+### 5. Update Overview
 
 Run the markdown generator to update `requirements/requirements-overview.md`:
 

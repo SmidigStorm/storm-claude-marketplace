@@ -8,5 +8,6 @@
   "license": "MIT",
   "keywords": ["requirements", "bdd", "gherkin", "feature", "acceptance"],
   "commands": ["./commands/"],
-  "skills": ["./skills/"]
+  "skills": ["./skills/"],
+  "rules": ["./rules/"]
 }

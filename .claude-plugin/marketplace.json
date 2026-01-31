@@ -45,12 +45,6 @@
       "source": "./plugins/pm-planning",
       "description": "Implementation planning and execution with specialized agents for codebase exploration, architecture design, and code review",
       "version": "2.0.0"
-    },
-    {
-      "name": "pm-airtable-setup",
-      "source": "./plugins/pm-airtable-setup",
-      "description": "Set up Airtable tables for PM plugins",
-      "version": "1.0.0"
     }
   ]
 }

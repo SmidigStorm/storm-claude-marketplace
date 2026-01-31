@@ -119,16 +119,7 @@ Domain: Admission
         └── Requirement: ADM-GRD-001 - Calculate weighted average
 ```
 
-### File-based vs Airtable
-
-You can store your work in **markdown files** or **Airtable** - your choice:
-
-| Approach | Best For | Commands |
-|----------|----------|----------|
-| **File-based** | Git-friendly, works offline, lives with code | `/vision`, `/domain`, `/backlog`, `/requirements`, `/plan` |
-| **Airtable** | Visual dashboards, collaboration, filtering | `/airtable-setup`, `/domain-airtable`, `/backlog-airtable`, `/requirements-airtable`, `/plan-airtable` |
-
-**File structure (markdown approach):**
+### File Structure
 ```
 your-project/
 └── docs/
@@ -202,7 +193,6 @@ Install a specific plugin:
 | [pm-prioritization](./plugins/pm-prioritization) | Manage product backlog with MoSCoW prioritization |
 | [pm-requirements](./plugins/pm-requirements) | BDD requirements with Gherkin feature files |
 | [pm-planning](./plugins/pm-planning) | Create and execute implementation plans |
-| [pm-airtable-setup](./plugins/pm-airtable-setup) | Set up Airtable tables for PM plugins |
 
 ## Quick Start
 

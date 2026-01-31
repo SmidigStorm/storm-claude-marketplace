@@ -45,7 +45,7 @@ flowchart LR
 ### Planning Phase
 
 1. **Discovery** - Understand what needs to be built
-2. **Requirements Mapping** - Link to existing requirements (SUB-CAP-NNN format)
+2. **Requirements Mapping** - Link to existing requirements (DOM-SUB-CAP-NNN format)
 3. **Codebase Exploration** - Launch `code-explorer` agents to understand patterns
 4. **Clarifying Questions** - Resolve all ambiguities before designing
 5. **Architecture Design** - Launch `code-architect` agents to propose approaches

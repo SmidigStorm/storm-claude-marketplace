@@ -46,7 +46,7 @@ Initial request: $ARGUMENTS
    - What is the acceptance criteria?
    - What are the business rules?
    - Any edge cases or examples?
-3. Use SUB-CAP-NNN format if requirements exist in the system
+3. Use DOM-SUB-CAP-NNN format if requirements exist in the system
 4. **Confirm scope with user before proceeding**
 
 ---
@@ -118,7 +118,7 @@ If the user says "whatever you think is best", provide your recommendation and g
 
 5. Break down chosen approach into concrete implementation steps
 
-6. Map each step to requirements it implements (SUB-CAP-NNN)
+6. Map each step to requirements it implements (DOM-SUB-CAP-NNN)
 
 7. **Confirm plan with user before documenting**
 
@@ -153,8 +153,8 @@ If the user says "whatever you think is best", provide your recommendation and g
 [What this plan accomplishes]
 
 ## Requirements
-- [ ] SUB-CAP-001: [Title] - [Acceptance criteria]
-- [ ] SUB-CAP-002: [Title] - [Acceptance criteria]
+- [ ] DOM-SUB-CAP-001: [Title] - [Acceptance criteria]
+- [ ] DOM-SUB-CAP-002: [Title] - [Acceptance criteria]
 
 ## Architecture Approach
 [Which approach was chosen and why]
@@ -166,12 +166,12 @@ If the user says "whatever you think is best", provide your recommendation and g
 ## Implementation Steps
 
 ### Step 1: [Description]
-**Implements**: SUB-CAP-001
+**Implements**: DOM-SUB-CAP-001
 **Files**:
 - `path/to/file.ts` - [What to change]
 
 ### Step 2: [Description]
-**Implements**: SUB-CAP-001, SUB-CAP-002
+**Implements**: DOM-SUB-CAP-001, DOM-SUB-CAP-002
 **Files**:
 - `path/to/new-file.ts` - [Create new file for X]
 - `path/to/existing.ts` - [Modify Y]

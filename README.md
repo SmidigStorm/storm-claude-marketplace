@@ -103,7 +103,7 @@ flowchart TD
         DOM2[Domain]
         SUB2["Subdomain (3-letter prefix)"]
         CAP["Capability (3-letter prefix)"]
-        REQ2["Requirement (ID: SUB-CAP-NNN)"]
+        REQ2["Requirement (ID: DOM-SUB-CAP-NNN)"]
 
         DOM2 --> SUB2
         SUB2 --> CAP

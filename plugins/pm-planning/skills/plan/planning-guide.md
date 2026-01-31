@@ -15,7 +15,7 @@ Guide for creating implementation plans through interactive dialogue.
 1. **Interactive** - Every phase ends with user confirmation
 2. **No assumptions** - Ask before deciding anything
 3. **CRITICAL: Clarifying Questions** - Phase 4 is the most important, never skip
-4. **Traceable** - Link plan steps to requirements (SUB-CAP-NNN)
+4. **Traceable** - Link plan steps to requirements (DOM-SUB-CAP-NNN)
 5. **Concrete** - End with specific files and changes
 
 ## Phase Checklist

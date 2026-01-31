@@ -75,7 +75,8 @@ cd requirements-parser && npm run generate-overview
 
 This scans all `.feature` files and generates an updated overview with ID, feature name, tags, and statistics.
 
-## References
+## Resources
 
-- See `requirements-writing` skill for BDD best practices
-- See `rules/gherkin-conventions.md` for project-specific rules
+- For BDD best practices, see [bdd-guide.md](bdd-guide.md)
+- For a complete example, see [examples/gherkin-example.feature](examples/gherkin-example.feature)
+- For project-specific rules, see `rules/gherkin-conventions.md`

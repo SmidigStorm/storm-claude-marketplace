@@ -77,3 +77,7 @@ ADR format:
 - Keep ADRs concise - capture the essence, not every detail
 - ADRs are immutable once accepted - create new ones to supersede old decisions
 - Tech stack should reflect what's actually in use, not aspirational
+
+## Resources
+
+- For detailed ADR guidance, see [adr-guide.md](adr-guide.md)

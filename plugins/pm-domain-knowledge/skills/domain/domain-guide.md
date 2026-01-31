@@ -1,8 +1,3 @@
----
-name: domain-knowledge
-description: Document domain knowledge including entities, attributes, relationships, processes, and ubiquitous language. Use when documenting domain models, entity relationships, business processes, or building a glossary of domain terms.
----
-
 # Domain Knowledge Documentation
 
 ## Overview

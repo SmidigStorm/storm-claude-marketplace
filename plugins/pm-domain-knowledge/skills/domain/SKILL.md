@@ -76,4 +76,6 @@ I'll only document what you tell me."
 - Use Mermaid diagrams for visualization
 - Keep files focused - one entity/process/term per file
 
-For detailed templates, refer to the domain-knowledge skill.
+## Resources
+
+- For detailed templates and examples, see [domain-guide.md](domain-guide.md)

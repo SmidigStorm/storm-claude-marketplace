@@ -187,3 +187,7 @@ If the user says "whatever you think is best", provide your recommendation and g
 - [Decision 1]: [Rationale]
 - [Decision 2]: [Rationale]
 ```
+
+## Resources
+
+- For planning dialogue patterns and checklists, see [planning-guide.md](planning-guide.md)

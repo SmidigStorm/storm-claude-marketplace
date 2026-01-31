@@ -1,9 +1,4 @@
----
-name: planning
-description: Interactive implementation planning from backlog items. Use when creating plans for features, fixes, or tasks. Guides 6-phase collaborative dialogue from discovery through documentation.
----
-
-# Implementation Planning
+# Implementation Planning Guide
 
 Guide for creating implementation plans through interactive dialogue.
 

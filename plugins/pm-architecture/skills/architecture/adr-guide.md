@@ -1,8 +1,3 @@
----
-name: adr
-description: Architecture Decision Records (ADRs) for documenting technical decisions. Use when creating, updating, or reviewing architecture decisions. Triggers on discussions about technical choices, trade-offs, or "why did we choose X" questions.
----
-
 # Architecture Decision Records
 
 ADRs document significant technical decisions with their context and consequences.

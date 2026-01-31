@@ -1,11 +1,3 @@
----
-name: requirements-writing
-description: >
-  BDD/Gherkin knowledge skill. Activates automatically when the user works with
-  .feature files, requirements, or BDD-related tasks. Gives Claude understanding
-  of Gherkin syntax and BDD best practices.
----
-
 # BDD/Gherkin Best Practices
 
 ## Core Principle: NEVER ASSUME

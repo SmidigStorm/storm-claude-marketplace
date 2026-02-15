@@ -45,6 +45,12 @@
       "source": "./plugins/pm-planning",
       "description": "Implementation planning and execution with specialized agents for codebase exploration, architecture design, and code review",
       "version": "2.0.0"
+    },
+    {
+      "name": "openclaw",
+      "source": "./plugins/openclaw",
+      "description": "Skill for installing, configuring, and using OpenClaw - a self-hosted personal AI assistant platform.",
+      "version": "0.1.0"
     }
   ]
 }

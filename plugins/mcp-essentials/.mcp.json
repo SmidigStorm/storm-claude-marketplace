@@ -1,0 +1,26 @@
+{
+  "github": {
+    "type": "http",
+    "url": "https://api.githubcopilot.com/mcp/"
+  },
+  "git": {
+    "command": "uvx",
+    "args": ["mcp-server-git"]
+  },
+  "gitlab": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-gitlab"],
+    "env": {
+      "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_PERSONAL_ACCESS_TOKEN}",
+      "GITLAB_API_URL": "${GITLAB_API_URL:-https://gitlab.com}"
+    }
+  },
+  "context7": {
+    "command": "npx",
+    "args": ["-y", "@upstash/context7-mcp@latest"]
+  },
+  "notion": {
+    "type": "http",
+    "url": "https://mcp.notion.com/mcp"
+  }
+}

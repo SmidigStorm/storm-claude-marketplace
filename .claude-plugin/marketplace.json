@@ -51,6 +51,12 @@
       "source": "./plugins/openclaw",
       "description": "Skill for installing, configuring, and using OpenClaw - a self-hosted personal AI assistant platform.",
       "version": "0.1.0"
+    },
+    {
+      "name": "mcp-essentials",
+      "source": "./plugins/mcp-essentials",
+      "description": "Essential MCP servers for development: GitHub, Git, GitLab, Context7, and Notion.",
+      "version": "1.0.0"
     }
   ]
 }
